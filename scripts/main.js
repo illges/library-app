@@ -1,13 +1,20 @@
 let myLibrary = []
 
-function render() {
-	myLibrary.forEach(book => {
-		const tome = document.createElement('div')
-		tome.classList.add('tome')
-		tome.innerHTML = book.title
+const newBookBtn = document.querySelector('#new');
+newBookBtn.addEventListener('click', addBookToLibrary);
+//newBookBtn.addEventListener('click', render);
 
-		shelf.appendChild(tome)
-	})
+const shelf = document.querySelector('#shelf');
+
+
+//Functions
+
+function render() {
+	const tome = document.createElement('div')
+	tome.classList.add('tome')
+	tome.innerHTML = newBook.title
+
+	shelf.appendChild(tome)
 }
 
 function book(title, author, pages, read) {
@@ -28,22 +35,14 @@ function addBookToLibrary() {
 	let pages = prompt("How many pages is it?", "600")
 	let read = prompt("You've already read it: true or false", "true")
 
-	myLibrary.push(new book(title, author, pages, read))
-
-	// const tome = document.createElement('div')
-	// tome.classList.add('tome')
-	// tome.innerHTML = title
-
-	// shelf.appendChild(tome)
+	newBook = new book(title, author, pages, read)
+	myLibrary.push(newBook)
+	render()
 
 	return console.log(myLibrary)
 }
 
-const newBookBtn = document.querySelector('#new');
-newBookBtn.addEventListener('click', addBookToLibrary);
-newBookBtn.addEventListener('click', render);
 
-const shelf = document.querySelector('#shelf');
 
 
 
