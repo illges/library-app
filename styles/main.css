@@ -11,8 +11,24 @@ html {
 	background-color: #FFFFFF;
 }
 
+form {
+	color: blue;
+	font-size: 30px;
+}
+
 .tome {
 	color: blue;
 	font-size: 50px;
 }
 
+.button {
+
+}
+
+.remove {
+
+}
+
+.status {
+
+}

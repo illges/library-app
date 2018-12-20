@@ -20,12 +20,18 @@
 
 <body>
   
-  <button id="new" type="button">NEW BOOK</button>
+	<form name="newForm">
+		Title: <input type="text" name="inputTitle"><br>
+  		Author: <input type="text" name="inputAuthor"><br>
+  		Number of Pages: <input type="text" name="inputPages"><br>
+  		Finished Reading: <input type="radio" name="inputStatus"><br><br>
 
-  <div id="shelf"></div>
+  		<button id="new" type="button">Add New Book</button>
+	</form>
+
+  	<div id="shelf"></div>
   
-  <script src="scripts/main.js"></script>
- 
+  	<script src="scripts/main.js"></script>
 
 </body>
 
