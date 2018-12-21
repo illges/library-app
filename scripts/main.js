@@ -21,9 +21,13 @@ function addBookToLibrary() {
 				'Need to Read'
 	}
 
-	newBook = new book(form.title, form.author, form.pages, form.status)
-	myLibrary.push(newBook)
-	render()
+	if(form.title.length > 0 && form.author.length > 0 && form.pages.length > 0) {
+		newBook = new book(form.title, form.author, form.pages, form.status)
+		myLibrary.push(newBook)
+		render()
+	} else {
+		alert('Please Fill out the form correctly')
+	}
 
 	return console.log(myLibrary)
 
@@ -32,7 +36,7 @@ function addBookToLibrary() {
 function render() {
 
 	const tome = document.createElement('div')
-	tome.classList.add('tome')
+	tome.classList.add('row')
 	tome.setAttribute("data-index", `${myLibrary.indexOf(newBook)}`)
 	tome.innerHTML = newBook.title
 
@@ -42,7 +46,7 @@ function render() {
 	remove.innerHTML = "Delete"
 
 	const status = document.createElement('button')
-	status.classList.add('status')
+	status.classList.add('update-status')
 	status.setAttribute("data-index", `${myLibrary.indexOf(newBook)}`)
 	status.innerHTML = newBook.status
 
@@ -53,11 +57,28 @@ function render() {
 	document.querySelectorAll('.delete-book').forEach(i => {
     	i.addEventListener('click', (e) => deleteBook(e))
     })
+
+    document.querySelectorAll('.update-status').forEach(i => {
+    	i.addEventListener('click', e => toggle(e))
+    })
 	
 }
 
-function toggle() {
-	
+function toggle(e) {
+	const toggle = document.querySelector(`button.update-status[data-index="${e.target.dataset.index}"]`)
+	if (myLibrary[e.target.dataset.index].status === 'Need to Read') {
+
+		toggle.innerHTML = 'Finished Reading'
+		myLibrary[e.target.dataset.index].status = 'Finished Reading'
+
+	} else {
+
+		toggle.innerHTML = 'Need to Read'
+		myLibrary[e.target.dataset.index].status = 'Need to Read'
+
+	}
+	// console.log(document.querySelector(`button.update-status[data-index="${e.target.dataset.index}"]`))
+	// console.log(myLibrary[e.target.dataset.index])
 }
 
 function deleteBook(e) {
