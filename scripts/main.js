@@ -1,14 +1,6 @@
 let myLibrary = [];
 
-const addBook = document.querySelector("#new");
-addBook.addEventListener('click', ()=> {
-	addBookToLibrary()
-	newForm.reset()
-});
-
-
-
-//Constructor
+//Constructors
 
 function book(title, author, pages, status) {
 	this.title = title
@@ -21,10 +13,10 @@ function book(title, author, pages, status) {
 
 function addBookToLibrary() {
 	const form = {
-		title : document.forms.newForm.elements.inputTitle.value,
-		author : document.forms.newForm.elements.inputAuthor.value,
-		pages : document.forms.newForm.elements.inputPages.value,
-		status : document.forms.newForm.elements.inputStatus.checked ? 
+		title : document.getElementById('input-title').value,
+		author : document.getElementById('input-author').value,
+		pages : document.getElementById('input-pages').value,
+		status : document.getElementById('input-status').checked ? 
 				'Finished Reading' :
 				'Need to Read'
 	}
@@ -34,6 +26,7 @@ function addBookToLibrary() {
 	render()
 
 	return console.log(myLibrary)
+
 }
 
 function render() {
@@ -43,12 +36,10 @@ function render() {
 	tome.setAttribute("data-index", `${myLibrary.indexOf(newBook)}`)
 	tome.innerHTML = newBook.title
 
-	shelf.appendChild(tome)
-
 	const remove = document.createElement('button')
-	remove.classList.add('remove')
+	remove.classList.add('delete-book')
 	remove.setAttribute("data-index", `${myLibrary.indexOf(newBook)}`)
-	remove.innerHTML = "Remove"
+	remove.innerHTML = "Delete"
 
 	const status = document.createElement('button')
 	status.classList.add('status')
@@ -57,6 +48,13 @@ function render() {
 
 	tome.appendChild(remove)
 	tome.appendChild(status)
+	shelf.appendChild(tome)
+
+	document.querySelectorAll('.delete-book').forEach(i => {
+    	i.addEventListener('click', (event) => {
+    		document.querySelector(`[data-index="${event.target.dataset.index}"]`).remove()
+    	})
+    })
 	
 }
 
@@ -65,12 +63,20 @@ function toggle() {
 }
 
 function removeBook() {
-	console.log('The event listener worked at least')
+	
 }
 
+//Selectors
 
+document.querySelector('.add-book').addEventListener('click', ()=> {
+			addBookToLibrary()
+			document.querySelector('.new-book').reset()
+});
 
+document.querySelector('.cancel').addEventListener('click', ()=> document.querySelector('.new-book').reset())
 
+document.querySelectorAll('.delete-book').forEach(i => {
+    i.addEventListener('click', (event) => {console.log(event.target.dataset)})})
 
 
 

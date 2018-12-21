@@ -20,15 +20,31 @@
 
 <body>
   
-	<form name="newForm">
-		Title: <input type="text" name="inputTitle"><br>
-  		Author: <input type="text" name="inputAuthor"><br>
-  		Number of Pages: <input type="text" name="inputPages"><br>
-  		Finished Reading: <input type="radio" name="inputStatus"><br><br>
-
-  		<button id="new" type="button">Add New Book</button>
+	<form class="new-book">
+		<div class="form-group">
+			<label for="input-title">Title:</label>
+			<input type="text" name="input-title" id="input-title"><br>
+		</div>
+		<div class="form-group">
+  			<label for="input-author">Author:</label>
+  			<input type="text" name="input-author" id='input-author'><br>
+  		</div>
+  		<div class="form-group">
+  			<label for="input-pages">Number of Pages:</label>
+  			<input type="text" name="input-pages" id='input-pages'><br>
+  		</div>
+  		<div class="form-group">
+  			<label for="input-status">Finished Reading:</label>
+  			<input type="checkbox" name="input-status" id="input-status">
+  			<br><br>
+  		</div>
+  		<div class="button-group">
+  			<input type="button" value="Add Book" class="add-book">
+  			<input type="button" value="Cancel" class="cancel">
+  		</div>
 	</form>
-
+	<br><br>
+	
   	<div id="shelf"></div>
   
   	<script src="scripts/main.js"></script>
