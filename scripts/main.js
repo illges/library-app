@@ -51,9 +51,7 @@ function render() {
 	shelf.appendChild(tome)
 
 	document.querySelectorAll('.delete-book').forEach(i => {
-    	i.addEventListener('click', (event) => {
-    		document.querySelector(`[data-index="${event.target.dataset.index}"]`).remove()
-    	})
+    	i.addEventListener('click', (e) => deleteBook(e))
     })
 	
 }
@@ -62,8 +60,8 @@ function toggle() {
 	
 }
 
-function removeBook() {
-	
+function deleteBook(e) {
+	document.querySelector(`[data-index="${e.target.dataset.index}"]`).remove()
 }
 
 //Selectors
@@ -75,8 +73,7 @@ document.querySelector('.add-book').addEventListener('click', ()=> {
 
 document.querySelector('.cancel').addEventListener('click', ()=> document.querySelector('.new-book').reset())
 
-document.querySelectorAll('.delete-book').forEach(i => {
-    i.addEventListener('click', (event) => {console.log(event.target.dataset)})})
+
 
 
 
